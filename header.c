@@ -36,7 +36,7 @@ void main()
 	printf("%d", l);
 	Animation a = {.steps = (Lettre[]){G___, GA__, GAL_, GALA, END},
 					.pause = 100,
-					.iterations = 20
+					.iterations = 20,
 					.appendBlank = 0};
 	int i = 0;
 	while(1)
