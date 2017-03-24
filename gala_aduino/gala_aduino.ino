@@ -162,15 +162,15 @@ void affichage(int l, int pause);*/
 
 void setup() {
 	// put your setup code here, to run once:
-	//pinMode(led_1, OUTPUT);
-	pinMode(led_2, OUTPUT);
+	pinMode(led_1, OUTPUT);
+	pinMode(led_2, OUTPUT); 	
 	//pinMode(led_3, OUTPUT);
 //	pinMode(led_4, OUTPUT);
 }
 
 void loop() {
 	// put your main code here, to run repeatedly:
-	//digitalWrite(led_1, LOW);
+	digitalWrite(led_1, LOW);
 	digitalWrite(led_2, LOW);
 	//digitalWrite(led_3, LOW);
 	//digitalWrite(led_4, LOW);
@@ -178,9 +178,9 @@ void loop() {
 	/*for(int i=0; i < animations_set_size; i++)
 	{
 		Animation* a = animations[i];
-	
+
 		//printf("Animation %d\n", i);
-	
+
 		for(int j=0; j < a->iterations; j++)
 		{
 			//printf("\tIteration %d\n", j);
@@ -218,7 +218,7 @@ void affichage(int l, int pause)
 	{
 		printf("_");
 	}
-	
+
 	if( (l & 0x4) > 0)
 	{
 		printf("A");
@@ -227,7 +227,7 @@ void affichage(int l, int pause)
 	{
 		printf("_");
 	}
-	
+
 	if( (l & 0x2) > 0)
 	{
 		printf("L");
@@ -236,7 +236,7 @@ void affichage(int l, int pause)
 	{
 		printf("_");
 	}
-	
+
 	if( (l & 0x1) > 0)
 	{
 		printf("A");
@@ -245,7 +245,7 @@ void affichage(int l, int pause)
 	{
 		printf("_");
 	}
-	
+
 	printf("\n");
 	delay(pause);
 }*/
