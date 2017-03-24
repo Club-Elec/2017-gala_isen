@@ -2,7 +2,7 @@ const int led_1 = 2;
 const int led_2 = 3;
 const int led_3 = 4;
 const int led_4 = 5;
-/*
+
 //Representation d'une lettre
 typedef enum
 {
@@ -53,7 +53,7 @@ Lettre l_1on2letter_blink[] = {G_L_, _A_A, END};
 Lettre l_end_middle_letter_blink[] = {G__A, _AL_, END};
 Lettre l_end_letter_blink[] = {GA__, __LA, END};
 
-#define short_pause 100
+#define short_pause 200
 #define medium_pause 200
 #define long_pause 300
 
@@ -127,25 +127,25 @@ Animation a_full_off = {.steps = l_full_off,
 //4 letter blink
 Animation a_full_blink = {.steps = l_full_blink,
 				.pause = short_pause,
-				.iterations = 3,
+				.iterations = 10,
 				.appendBlank = blanck_after};
 
 //1 letter on 2 blink
 Animation a_1on2letter_blink = {.steps = l_1on2letter_blink,
 				.pause = short_pause,
-				.iterations = 3,
+				.iterations = 10,
 				.appendBlank = blanck_never};
 
 //end letters blink with middle letters
 Animation a_end_middle_letter_blink = {.steps = l_end_middle_letter_blink,
 				.pause = short_pause,
-				.iterations = 3,
+				.iterations = 10,
 				.appendBlank = blanck_never};
 
 //2letter on one end blink
 Animation a_end_letter_blink = {.steps = l_end_letter_blink,
 				.pause = short_pause,
-				.iterations = 3,
+				.iterations = 10,
 				.appendBlank = blanck_never};
 
 const int animations_set_size = 14;
@@ -158,24 +158,24 @@ Animation* animations[] = {&a_full_on,//0
 							&a_full_on,//10
 							&a_1on2letter_blink, &a_end_middle_letter_blink, &a_end_letter_blink};//11 12 13
 
-void affichage(int l, int pause);*/
+void affichage(int l, int pause);
 
 void setup() {
 	// put your setup code here, to run once:
 	pinMode(led_1, OUTPUT);
 	pinMode(led_2, OUTPUT); 	
-	//pinMode(led_3, OUTPUT);
-//	pinMode(led_4, OUTPUT);
+	pinMode(led_3, OUTPUT);
+	pinMode(led_4, OUTPUT);
 }
 
 void loop() {
 	// put your main code here, to run repeatedly:
 	digitalWrite(led_1, LOW);
 	digitalWrite(led_2, LOW);
-	//digitalWrite(led_3, LOW);
-	//digitalWrite(led_4, LOW);
-//	return;
-	/*for(int i=0; i < animations_set_size; i++)
+	digitalWrite(led_3, LOW);
+	digitalWrite(led_4, LOW);
+
+	for(int i=0; i < animations_set_size; i++)
 	{
 		Animation* a = animations[i];
 
@@ -203,49 +203,57 @@ void loop() {
 				affichage(____, a->pause);
 			}
 		}
-	}*/
+	}
 }
-/*
+
 void affichage(int l, int pause)
 {
 	//printf("%d\t", l);
 	//printf("\r");
 	if( (l & 0x8) > 0)
 	{
-		printf("G");
+		//printf("G");
+		digitalWrite(led_1, LOW);
 	}
 	else
 	{
-		printf("_");
+		//printf("_");
+		digitalWrite(led_1, HIGH);
 	}
 
 	if( (l & 0x4) > 0)
 	{
-		printf("A");
+		//printf("A");
+		digitalWrite(led_2, LOW);
 	}
 	else
 	{
-		printf("_");
+		//printf("_");
+		digitalWrite(led_2, HIGH);
 	}
 
 	if( (l & 0x2) > 0)
 	{
-		printf("L");
+		//printf("L");
+		digitalWrite(led_3, LOW);
 	}
 	else
 	{
-		printf("_");
+		//printf("_");
+		digitalWrite(led_3, HIGH);
 	}
 
 	if( (l & 0x1) > 0)
 	{
-		printf("A");
+		//printf("A");
+		digitalWrite(led_4, LOW);
 	}
 	else
 	{
-		printf("_");
+		//printf("_");
+		digitalWrite(led_4, HIGH);
 	}
 
-	printf("\n");
+	//printf("\n");
 	delay(pause);
-}*/
+}
