@@ -2,6 +2,7 @@ const int led_1 = 2;
 const int led_2 = 3;
 const int led_3 = 4;
 const int led_4 = 5;
+const int btn = 6;
 
 //Representation d'une lettre
 typedef enum
@@ -157,6 +158,8 @@ Animation* animations[] = {&a_full_on,//0
 							&a_full_blink,//9
 							&a_full_on,//10
 							&a_1on2letter_blink, &a_end_middle_letter_blink, &a_end_letter_blink};//11 12 13
+int stop = 0;
+
 
 void affichage(int l, int pause);
 
@@ -166,15 +169,31 @@ void setup() {
 	pinMode(led_2, OUTPUT); 	
 	pinMode(led_3, OUTPUT);
 	pinMode(led_4, OUTPUT);
+	pinMode(btn, INPUT);
 }
 
-void loop() {
-	// put your main code here, to run repeatedly:
-	digitalWrite(led_1, LOW);
-	digitalWrite(led_2, LOW);
-	digitalWrite(led_3, LOW);
-	digitalWrite(led_4, LOW);
+int isBtnOn()
+{
+	static int ar = 0;
+	int val = digitalRead(btn);
+	if(val == HIGH)
+	{
+		if(ar == 0)
+		{
+			ar = 1;
+			return 1;
+		}
+		return 0;
+	}
+	else
+	{
+		ar = 0;
+		return 0;
+	}
+}
 
+void loop()
+{
 	for(int i=0; i < animations_set_size; i++)
 	{
 		Animation* a = animations[i];
@@ -191,6 +210,24 @@ void loop() {
 			}
 			while(1)
 			{
+				if(isBtnOn() == 1)
+				{
+					if(stop == 0)
+					{
+						stop = 1;
+					}
+					else
+					{
+						stop = 0;
+					}
+				}
+										
+				if(stop == 1)
+				{
+					affichage(GALA, 1);
+					continue;
+				}
+				
 				if(a->steps[k] == END)
 				{
 					break;
