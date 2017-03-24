@@ -2,7 +2,11 @@ const int led_1 = 2;
 const int led_2 = 3;
 const int led_3 = 4;
 const int led_4 = 5;
-const int btn = 6;
+const int led_5 = 6;
+const int led_6 = 7;
+const int led_7 = 8;
+const int led_8 = 9;
+const int btn = 10;
 
 //Representation d'une lettre
 typedef enum
@@ -54,7 +58,7 @@ Lettre l_1on2letter_blink[] = {G_L_, _A_A, END};
 Lettre l_end_middle_letter_blink[] = {G__A, _AL_, END};
 Lettre l_end_letter_blink[] = {GA__, __LA, END};
 
-#define short_pause 200
+#define short_pause 300
 #define medium_pause 200
 #define long_pause 300
 
@@ -169,6 +173,10 @@ void setup() {
 	pinMode(led_2, OUTPUT); 	
 	pinMode(led_3, OUTPUT);
 	pinMode(led_4, OUTPUT);
+	pinMode(led_5, OUTPUT);
+	pinMode(led_6, OUTPUT);
+	pinMode(led_7, OUTPUT);
+	pinMode(led_8, OUTPUT);
 	pinMode(btn, INPUT);
 }
 
@@ -251,44 +259,52 @@ void affichage(int l, int pause)
 	{
 		//printf("G");
 		digitalWrite(led_1, LOW);
-	}
-	else
-	{
-		//printf("_");
-		digitalWrite(led_1, HIGH);
-	}
-
-	if( (l & 0x4) > 0)
-	{
-		//printf("A");
 		digitalWrite(led_2, LOW);
 	}
 	else
 	{
 		//printf("_");
+		digitalWrite(led_1, HIGH);
 		digitalWrite(led_2, HIGH);
 	}
 
-	if( (l & 0x2) > 0)
-	{
-		//printf("L");
-		digitalWrite(led_3, LOW);
-	}
-	else
-	{
-		//printf("_");
-		digitalWrite(led_3, HIGH);
-	}
-
-	if( (l & 0x1) > 0)
+	if( (l & 0x4) > 0)
 	{
 		//printf("A");
+		digitalWrite(led_3, LOW);
 		digitalWrite(led_4, LOW);
 	}
 	else
 	{
 		//printf("_");
+		digitalWrite(led_3, HIGH);
 		digitalWrite(led_4, HIGH);
+	}
+
+	if( (l & 0x2) > 0)
+	{
+		//printf("L");
+		digitalWrite(led_5, LOW);
+		digitalWrite(led_6, LOW);
+	}
+	else
+	{
+		//printf("_");
+		digitalWrite(led_5, HIGH);
+		digitalWrite(led_6, HIGH);
+	}
+
+	if( (l & 0x1) > 0)
+	{
+		//printf("A");
+		digitalWrite(led_7, LOW);
+		digitalWrite(led_8, LOW);
+	}
+	else
+	{
+		//printf("_");
+		digitalWrite(led_7, HIGH);
+		digitalWrite(led_8, HIGH);
 	}
 
 	//printf("\n");
